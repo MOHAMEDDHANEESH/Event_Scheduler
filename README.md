@@ -1,7 +1,5 @@
 # Event_Scheduler
 Screenshots:
-<img width="1366" height="768" alt="1 login page" src="https://github.com/user-attachments/assets/277acc30-494c-4c14-ac45-2f103ccbdeaf" />
-
 <img width="1366" height="768" alt="1 login page" src="https://github.com/user-attachments/assets/54ac15f6-fae3-4090-a00f-f5695956978c" />
 <img width="1366" height="768" alt="12 User result" src="https://github.com/user-attachments/assets/d9468aee-5f05-44f2-93f8-2b081f995a1b" />
 <img width="1366" height="768" alt="11 User login" src="https://github.com/user-attachments/assets/b4be6a05-2424-4e49-a2c7-a3022de03154" />
