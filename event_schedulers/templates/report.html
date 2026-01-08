@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="card">
+    <h2>Resource Utilization Report</h2>
+    <form method="post"
+        style="display: flex; gap: 10px; align-items: end; margin-bottom: 2rem; background: var(--bg-color); padding: 1rem; border-radius: 6px;">
+        <div class="form-group" style="margin-bottom: 0; flex-grow: 1;">
+            <label>Start Date</label>
+            <input type="text" name="start" class="datetime-picker" placeholder="Select Start Date/Time" required>
+        </div>
+        <div class="form-group" style="margin-bottom: 0; flex-grow: 1;">
+            <label>End Date</label>
+            <input type="text" name="end" class="datetime-picker" placeholder="Select End Date/Time" required>
+        </div>
+        <button class="btn" style="height: fit-content;">Generate Report</button>
+    </form>
+
+    {% if data %}
+    <table>
+        <thead>
+            <tr>
+                <th>Resource Name</th>
+                <th>Total Duration</th>
+                <th>Total Hours</th>
+                <th>Bookings Count</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            {% for d in data %}
+            {% set hours = d.total_hours or 0 %}
+            {% set days = (hours // 24)|int %}
+            {% set remaining_hours = (hours % 24)|int %}
+            <tr>
+                <td>{{ d.resource_name }}</td>
+                <td>
+                    {% if days > 0 %}{{ days }} day{% if days > 1 %}s{% endif %}{% endif %}
+                    {% if remaining_hours > 0 or days == 0 %}{{ remaining_hours }} hour{% if remaining_hours != 1 %}s{%
+                    endif %}{% endif %}
+                </td>
+                <td>{{ hours }} hours</td>
+                <td>{{ d.bookings }}</td>
+            </tr>
+
+            {% endfor %}
+        </tbody>
+
+    </table>
+    {% elif request.method == 'POST' %}
+    <p style="color: var(--text-muted); text-align: center; margin-top: 2rem;">No usage data found for this period.</p>
+    {% endif %}
+</div>
+{% endblock %}
